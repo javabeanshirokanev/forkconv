@@ -1,6 +1,7 @@
 package org.test;
 
 import java.util.Random;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 
 public class Main {
@@ -17,6 +18,13 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
+
+        var executorService = java.util.concurrent.Executors.newFixedThreadPool(4);
+        executorService.submit(() -> { System.out.println("1"); });
+        executorService.submit(() -> { System.out.println("2"); });
+        executorService.shutdown();
+
+        System.out.println("conv");
 
         long start = System.nanoTime();
         var mask = new byte[][] {
